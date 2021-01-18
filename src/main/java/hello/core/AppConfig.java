@@ -35,6 +35,8 @@ public class AppConfig {
     // call AppConfig.memberService
     // AppConfig.memberRepository
     // call AppConfig.orderService
+
+    // @Autowired MemberRepository memberRepository 를 사용하면 의존관계 주입이되어 문제가 해결된다. (스프링에서 가져오는것)
     @Bean
     public MemberService memberService(){
         // 기존에 MemberServiceImpl에서 구현한것을 Appconfig에서 구현 ( 생성자 주입 )
