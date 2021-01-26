@@ -23,9 +23,28 @@ public class OrderServiceImpl implements OrderService{
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
+    // 필드 인젝션
+    // 안티패턴 ? ... 외부에서 변경하는게 굉장히 어렵다.
+//    @Autowired private MemberRepository memberRepository;
+//    @Autowired private DiscountPolicy discountPolicy;
+//
+//    // 필드주입으로 하면 setter를 열어줘야한다.
+//    @Autowired
+//    public void setMemberRepository(MemberRepository memberRepository) {
+//        this.memberRepository = memberRepository;
+//    }
+//    @Autowired
+//    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+//        this.discountPolicy = discountPolicy;
+//    }
+
 
     @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        // 2 ) 생성자를 통해서 의존 관계를 주입.
+        // 값이 바꿀수없는 불변,필수 의존관계에서 사용.
+        // 중요* 생성자가 딱 하나 있으면 @Autowired를 자동으로 적용된다.(스프링 빈에서만 해당)
+        System.out.println("OrderServiceImpl.OrderServiceImpl");
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }

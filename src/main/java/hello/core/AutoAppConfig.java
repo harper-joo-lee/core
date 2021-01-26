@@ -1,5 +1,13 @@
 package hello.core;
 
+import hello.core.discount.DiscountPolicy;
+import hello.core.member.MemberRepository;
+import hello.core.member.MemoryMemberRepository;
+import hello.core.order.Order;
+import hello.core.order.OrderService;
+import hello.core.order.OrderServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
@@ -15,4 +23,14 @@ public class AutoAppConfig {
     // basePackagesClasses 를 정의하지않으면 ComponentScan에 지정해준 클래스의 패키지를 탐색 시작 위로 지정한다.
     // 권장하는 방법 : 패키지 위치를 지정하지않고, 설정 정보 클래스의 위치를 프로젝트 최상단에 두는 것이다.
     // 프로젝트 메인 설정 정보는 프로젝트를 대표하는 정보이기 떄문에 프로젝트 시작 루트 위치에 두는 것이 좋다고 생각. (ex @SpringBootApplication)
+
+//    @Bean
+//    OrderService orderService(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+//        return new OrderServiceImpl(memberRepository, discountPolicy);
+//    }
+
+    @Bean(name = "memoryMemberRepository")
+    MemberRepository memberRepository() {
+        return new MemoryMemberRepository();
+    }
 }

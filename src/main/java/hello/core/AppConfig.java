@@ -54,7 +54,8 @@ public class AppConfig {
     public OrderService orderService() {
         System.out.println("call AppConfig.orderService");
         // 생성자 주입
-        return new OrderServiceImpl(memberRepository(), discountPolicy());
+       // return new OrderServiceImpl(memberRepository(), discountPolicy());
+        return null;
     }
 
     @Bean
